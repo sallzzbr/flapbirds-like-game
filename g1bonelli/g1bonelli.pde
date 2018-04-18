@@ -38,14 +38,8 @@ void addNewObstacles(){
 
  void collision(){
    for(int i = 0; i < obstacles.size(); i++){
-     if(obstacles.get(i).obX - 30 <= 310 && obstacles.get(i).obX + 30 >= 290){
-       println("oi");
-     } else {
-       println("ob X + 30", obstacles.get(i).obX + 30);
-       println("ob X - 30", obstacles.get(i).obX - 30);
-       //println("ob Y + 10",obstacles.get(i).obY + 10);
-       //println("ob Y - 10", obstacles.get(i).obY - 10);
-       //println("flap Y", flapFlap.ballY);
+     if(obstacles.get(i).obX - 30 <= 310 && obstacles.get(i).obX + 30 >= 290 && obstacles.get(i).obY - 10 <= flapFlap.ballY + 10 && obstacles.get(i).obY + 10 >= flapFlap.ballY - 10){
+       exit();
      } 
    }
 }
