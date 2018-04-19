@@ -8,7 +8,7 @@ class Obstacles {
   Obstacles(int tempY) {
     obX = 630;
     obY = tempY;
-    accel = 1.1;
+    accel = (float) random(1.1, 2);
     speed = 1;
   }
   
@@ -23,8 +23,9 @@ class Obstacles {
   
   void move(){
     obX = obX - speed;
-    if(obX < 0){
+    if(obX < -30){
       obX = 630;
+      obY = int(random(0, 400));
       if( speed < 10){
       speed = speed * accel;
       } else {
