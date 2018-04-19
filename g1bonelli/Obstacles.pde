@@ -23,8 +23,9 @@ class Obstacles {
   
   void move(){
     obX = obX - speed;
-    if(obX < 0){
+    if(obX < -30){
       obX = 630;
+      obY = int(random(0, 400));
       if( speed < 10){
       speed = speed * accel;
       } else {
