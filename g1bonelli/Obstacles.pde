@@ -8,7 +8,7 @@ class Obstacles {
   Obstacles(int tempY) {
     obX = 630;
     obY = tempY;
-    accel = 1.1;
+    accel = (float) random(1.1, 2);
     speed = 1;
   }
   
