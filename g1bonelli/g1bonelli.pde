@@ -72,6 +72,7 @@ void gameRun() {
   text("Tempo:",40,20);
   time();
   text(timer,90,20);
+  fill(255);
 }
 
 void textBlink(){
@@ -87,6 +88,9 @@ void time(){
     if(frameCount%60 == 1) {
       timer = timer + 1;
     }
+  }
+  if (gameOver){
+    timer = 0;
   }
 }
 
