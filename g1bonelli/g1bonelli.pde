@@ -3,6 +3,7 @@ final static ArrayList<Obstacles> obstacles = new ArrayList();
 boolean gameStart = false;
 boolean gameOver = false;
 boolean textFill = true;
+int timer = 0;
 PFont startMessage;
 
 void setup(){
@@ -17,13 +18,13 @@ void setup(){
 void draw(){
   background(0);
   textBlink();
+  textFont(startMessage);
+  textAlign(CENTER);
+  textSize(18);
   if(gameStart){
     gameRun();
   } else {
     redraw();
-    textFont(startMessage);
-    textAlign(CENTER);
-    textSize(18);
     if(gameOver){
       text("Press Down to restart!",300,200);
     } else {
@@ -40,14 +41,14 @@ void draw(){
 void addNewObstacles(){
   if ( obstacles.size() < 5){
     for(int i = 0; i < obstacles.size(); i++){
-      if (obstacles.get(i).obX - 30 <= -60){
+      if (obstacles.get(i).obX - 30 <= -60 && obstacles.get(i).obX - 30 >= -61){
         obstacles.add( new Obstacles(int(random(0, 400))));
-        println(obstacles.size());
+        println("foi", obstacles.size());
       }
     }
   } else {
     for(int i = 0; i < obstacles.size(); i++){
-      if (obstacles.get(i).obX - 30 <= -60){
+      if (obstacles.get(i).obX - 30 <= -60 && obstacles.get(i).obX - 30 >= -61){
         println(obstacles.size());
       }
     }
@@ -68,6 +69,9 @@ void gameRun() {
   for (Obstacles b: obstacles)   b.run();
   addNewObstacles();
   collision();
+  text("Tempo:",40,20);
+  time();
+  text(timer,90,20);
 }
 
 void textBlink(){
@@ -75,6 +79,14 @@ void textBlink(){
     textFill = false;
   } else if(frameCount%60 == 30) {
     textFill = true;
+  }
+}
+
+void time(){
+  if(gameStart){
+    if(frameCount%60 == 1) {
+      timer = timer + 1;
+    }
   }
 }
 
