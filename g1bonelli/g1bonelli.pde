@@ -73,6 +73,7 @@ void gameRun() {
   time();
   text(timer,90,20);
   fill(255);
+  gameOver = false;
 }
 
 void textBlink(){
