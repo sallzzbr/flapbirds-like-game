@@ -108,6 +108,8 @@ void time(){
   }
   if (gameOver){
     timer = 0;
+    flapFlap.ballY = 200;
+    flapFlap.speed = 0;
   }
 }
 
