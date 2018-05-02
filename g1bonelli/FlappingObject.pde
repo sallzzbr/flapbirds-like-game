@@ -25,11 +25,11 @@ class FlappingObject {
     ballY = ballY + speed;
     speed = speed + gravity;
     
-    if (upB) {
-      gravity = -0.1;
-    } else {
-      gravity = 0.1;
-    }
+    //if (upB) {
+    //  gravity = -0.1;
+    //} else {
+    //  gravity = 0.1;
+    //}
     
     if (ballY > height) {
       speed = speed * -0.95;
