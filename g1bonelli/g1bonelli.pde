@@ -1,3 +1,5 @@
+import processing.serial.*;
+
 FlappingObject flapFlap = new FlappingObject();
 final static ArrayList<Obstacles> obstacles = new ArrayList();
 boolean gameStart = false;
@@ -5,6 +7,8 @@ boolean gameOver = false;
 boolean textFill = true;
 int timer = 0;
 PFont startMessage;
+Serial myPort;
+int val;
 
 void setup(){
   frameRate(60);
@@ -13,6 +17,8 @@ void setup(){
   rectMode(CENTER);
   obstacles.add( new Obstacles(int(random(0, 400)))); 
   startMessage = loadFont("AmericanTypewriter-CondensedLight-100.vlw");
+  String portName = Serial.list()[3];//colocar aqui a porta serial
+  myPort = new Serial(this, portName, 9600);  
 }
 
 void draw(){
@@ -64,8 +70,18 @@ void addNewObstacles(){
    }
 }
 
+void pressureController(){
+  val = myPort.read();
+  if( val == -1){
+    flapFlap.gravity = 0.1;
+  } else {
+    flapFlap.gravity = -0.1 * (val*0.1);
+  }   
+}
+
 void gameRun() {
   flapFlap.run();
+  pressureController();
   for (Obstacles b: obstacles)   b.run();
   addNewObstacles();
   collision();
