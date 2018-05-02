@@ -27,6 +27,7 @@ void draw(){
   textFont(startMessage);
   textAlign(CENTER);
   textSize(18);
+  pressureStart();
   if(gameStart){
     gameRun();
   } else {
@@ -114,15 +115,17 @@ void time(){
 }
 
 void pressureStart(){
-   if((gameStart == false || gameOver == true){
+   if((gameStart == false || gameOver == true)){
      if ( myPort.available() > 0) {
       val = myPort.read();
-     }
+     } 
+     if( val > 0){
       gameStart = true;
       if(obstacles.size() >= 1){
         obstacles.clear();
         obstacles.add( new Obstacles(int(random(0, 400))));
       }
+     }
    }
 }
 
