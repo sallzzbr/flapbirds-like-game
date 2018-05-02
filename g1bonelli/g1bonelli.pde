@@ -113,6 +113,19 @@ void time(){
   }
 }
 
+void pressureStart(){
+   if((gameStart == false || gameOver == true){
+     if ( myPort.available() > 0) {
+      val = myPort.read();
+     }
+      gameStart = true;
+      if(obstacles.size() >= 1){
+        obstacles.clear();
+        obstacles.add( new Obstacles(int(random(0, 400))));
+      }
+   }
+}
+
 void keyPressed() {
   if (key == CODED) { 
     if (keyCode == UP) {
